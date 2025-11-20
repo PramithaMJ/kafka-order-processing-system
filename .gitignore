@@ -1,4 +1,4 @@
-infrastucture/docker/.env
+infrastructure/docker/.env
 .DS_Store
 .vscode/
 .idea/

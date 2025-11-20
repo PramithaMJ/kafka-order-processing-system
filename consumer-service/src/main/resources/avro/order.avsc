@@ -1,0 +1,86 @@
+{
+  "type": "record",
+  "name": "Order",
+  "namespace": "com.pramithamj.kafka.model",
+  "doc": "Schema for order events in the Kafka order processing system",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "string",
+      "doc": "Unique identifier for the order"
+    },
+    {
+      "name": "customerId",
+      "type": "string",
+      "doc": "Identifier for the customer placing the order"
+    },
+    {
+      "name": "productId",
+      "type": "string",
+      "doc": "Identifier for the product being ordered"
+    },
+    {
+      "name": "quantity",
+      "type": "int",
+      "doc": "Number of items ordered"
+    },
+    {
+      "name": "price",
+      "type": "double",
+      "doc": "Price per unit of the product"
+    },
+    {
+      "name": "totalAmount",
+      "type": "double",
+      "doc": "Total amount for the order (quantity * price)"
+    },
+    {
+      "name": "orderStatus",
+      "type": {
+        "type": "enum",
+        "name": "OrderStatus",
+        "symbols": ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"]
+      },
+      "doc": "Current status of the order"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "Unix timestamp (milliseconds) when the order was created"
+    },
+    {
+      "name": "shippingAddress",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "Address",
+          "fields": [
+            {"name": "street", "type": "string"},
+            {"name": "city", "type": "string"},
+            {"name": "state", "type": "string"},
+            {"name": "zipCode", "type": "string"},
+            {"name": "country", "type": "string"}
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Shipping address for the order"
+    },
+    {
+      "name": "paymentMethod",
+      "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": ["CREDIT_CARD", "DEBIT_CARD", "PAYPAL", "BANK_TRANSFER", "CASH_ON_DELIVERY"]
+      },
+      "doc": "Payment method used for the order"
+    },
+    {
+      "name": "notes",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Additional notes or comments about the order"
+    }
+  ]
+}
