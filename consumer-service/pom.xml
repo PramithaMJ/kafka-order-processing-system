@@ -12,7 +12,7 @@
 	<artifactId>Kafka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kafka-order-system</name>
-	<description>kafka project for Spring Boot</description>
+	<description>consumer-service</description>
 	<url/>
 	<licenses>
 		<license/>
