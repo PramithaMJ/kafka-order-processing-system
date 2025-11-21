@@ -18,14 +18,9 @@
                 <i class="fas fa-stream"></i>
                 <h1>Kafka Order Processing System</h1>
             </div>
-            <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="status-indicator">
-                    <span class="status-dot" id="systemStatus"></span>
-                    <span id="systemStatusText">Checking...</span>
-                </div>
+            <div class="status-indicator">
+                <span class="status-dot" id="systemStatus"></span>
+                <span id="systemStatusText">Checking...</span>
             </div>
         </div>
     </header>
@@ -86,103 +81,102 @@
         <!-- Create Order Section -->
         <section class="action-section">
             <h2><i class="fas fa-plus-circle"></i> Create New Order</h2>
-            <div class="order-form-container">
-                <form id="orderForm" class="order-form">
-                    <div class="form-group">
-                        <label for="orderId">
-                            <i class="fas fa-hashtag"></i> Order ID
-                        </label>
-                        <input type="text" id="orderId" placeholder="e.g., ORD12345" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="product">
-                            <i class="fas fa-box"></i> Product Name
-                        </label>
-                        <input type="text" id="product" placeholder="e.g., Laptop, Mouse, Keyboard" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">
-                            <i class="fas fa-tag"></i> Price ($)
-                        </label>
-                        <input type="number" id="price" step="0.01" min="0.01" placeholder="99.99" required>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Send Order
-                        </button>
-                        <button type="button" class="btn btn-secondary" onclick="generateRandomOrder()">
-                            <i class="fas fa-random"></i> Random Order
-                        </button>
-                        <button type="button" class="btn btn-info" onclick="sendBatchOrders()">
-                            <i class="fas fa-layer-group"></i> Send 10 Orders
-                        </button>
-                    </div>
-                </form>
-
-                <div id="orderResponse" class="response-message"></div>
-            </div>
+            <form id="orderForm" class="order-form-inline">
+                <div class="form-group">
+                    <label for="orderId"><i class="fas fa-hashtag"></i> Order ID</label>
+                    <input type="text" id="orderId" placeholder="e.g., ORD12345" required>
+                </div>
+                <div class="form-group">
+                    <label for="product"><i class="fas fa-box"></i> Product Name</label>
+                    <input type="text" id="product" placeholder="e.g., Laptop, Mouse, Keyboard" required>
+                </div>
+                <div class="form-group">
+                    <label for="price"><i class="fas fa-tag"></i> Price ($)</label>
+                    <input type="number" id="price" step="0.01" min="0.01" placeholder="99.99" required>
+                </div>
+                <div class="form-actions-inline">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Order
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="generateRandomOrder()">
+                        <i class="fas fa-random"></i> Random Order
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="sendBatchOrders()">
+                        <i class="fas fa-layer-group"></i> Send 10 Orders
+                    </button>
+                </div>
+            </form>
+            <div id="orderResponse" class="response-message"></div>
         </section>
 
         <!-- Kafka Cluster Status Section -->
         <section class="cluster-section">
             <h2><i class="fas fa-server"></i> Kafka Cluster Status</h2>
             <div class="cluster-grid">
-                <div class="cluster-card" id="broker1">
-                    <div class="cluster-icon">
+                <div class="info-card" id="broker1">
+                    <div class="info-card-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3>Kafka Broker 1</h3>
-                    <p class="cluster-port">Port: 9092</p>
-                    <span class="cluster-status checking">Checking...</span>
+                    <div class="info-card-content">
+                        <h3>Kafka Broker 1</h3>
+                        <p class="info-detail">Port: 9092</p>
+                        <span class="status-badge checking">Checking...</span>
+                    </div>
                 </div>
-
-                <div class="cluster-card" id="broker2">
-                    <div class="cluster-icon">
+                <div class="info-card" id="broker2">
+                    <div class="info-card-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3>Kafka Broker 2</h3>
-                    <p class="cluster-port">Port: 9093</p>
-                    <span class="cluster-status checking">Checking...</span>
+                    <div class="info-card-content">
+                        <h3>Kafka Broker 2</h3>
+                        <p class="info-detail">Port: 9093</p>
+                        <span class="status-badge checking">Checking...</span>
+                    </div>
                 </div>
-
-                <div class="cluster-card" id="broker3">
-                    <div class="cluster-icon">
+                <div class="info-card" id="broker3">
+                    <div class="info-card-icon">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3>Kafka Broker 3</h3>
-                    <p class="cluster-port">Port: 9094</p>
-                    <span class="cluster-status checking">Checking...</span>
+                    <div class="info-card-content">
+                        <h3>Kafka Broker 3</h3>
+                        <p class="info-detail">Port: 9094</p>
+                        <span class="status-badge checking">Checking...</span>
+                    </div>
                 </div>
-
-                <div class="cluster-card" id="zookeeper">
-                    <div class="cluster-icon">
+                <div class="info-card" id="zookeeper">
+                    <div class="info-card-icon">
                         <i class="fas fa-sitemap"></i>
                     </div>
-                    <h3>ZooKeeper</h3>
-                    <p class="cluster-port">Port: 2181</p>
-                    <span class="cluster-status checking">Checking...</span>
+                    <div class="info-card-content">
+                        <h3>ZooKeeper</h3>
+                        <p class="info-detail">Port: 2181</p>
+                        <span class="status-badge checking">Checking...</span>
+                    </div>
                 </div>
-
-                <div class="cluster-card" id="schemaRegistry">
-                    <div class="cluster-icon">
+                <div class="info-card" id="schemaRegistry">
+                    <div class="info-card-icon">
                         <i class="fas fa-file-code"></i>
                     </div>
-                    <h3>Schema Registry</h3>
-                    <p class="cluster-port">Port: 8081</p>
-                    <span class="cluster-status checking">Checking...</span>
+                    <div class="info-card-content">
+                        <h3>Schema Registry</h3>
+                        <p class="info-detail">Port: 8081</p>
+                        <span class="status-badge checking">Checking...</span>
+                    </div>
                 </div>
-
-                <div class="cluster-card" id="kafkaUI">
-                    <div class="cluster-icon">
+                <div class="info-card" id="kafkaUI">
+                    <div class="info-card-icon">
                         <i class="fas fa-chart-bar"></i>
                     </div>
-                    <h3>Kafka UI</h3>
-                    <p class="cluster-port">Port: 8080</p>
-                    <span class="cluster-status checking">Checking...</span>
-                    <a href="http://localhost:8080" target="_blank" class="view-link">Open UI</a>
+                    <div class="info-card-content">
+                        <h3>Kafka UI</h3>
+                        <p class="info-detail">Port: 8080</p>
+                        <div class="card-actions">
+                            <span class="status-badge checking">Checking...</span>
+                            <a href="http://localhost:8080" target="_blank" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-external-link-alt"></i> Open UI
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -191,37 +185,36 @@
         <section class="services-section">
             <h2><i class="fas fa-cogs"></i> Microservices Status</h2>
             <div class="services-grid">
-                <div class="service-card" id="producerService">
-                    <div class="service-header">
+                <div class="info-card" id="producerService">
+                    <div class="info-card-icon">
                         <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="info-card-content">
                         <h3>Producer Service</h3>
-                    </div>
-                    <div class="service-details">
-                        <p><strong>Port:</strong> 8090</p>
-                        <p><strong>Function:</strong> Order creation & sending</p>
-                        <p><strong>Status:</strong> <span class="service-status checking">Checking...</span></p>
-                    </div>
-                    <div class="service-actions">
-                        <a href="http://localhost:8090/actuator/health" target="_blank" class="btn-link">
-                            <i class="fas fa-heartbeat"></i> Health
-                        </a>
+                        <p class="info-detail">Port: 8090</p>
+                        <p class="info-detail">Order creation & sending</p>
+                        <div class="card-actions">
+                            <span class="status-badge checking">Checking...</span>
+                            <a href="http://localhost:8090/actuator/health" target="_blank" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-heartbeat"></i> Health
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="service-card" id="consumerService">
-                    <div class="service-header">
+                <div class="info-card" id="consumerService">
+                    <div class="info-card-icon">
                         <i class="fas fa-inbox"></i>
+                    </div>
+                    <div class="info-card-content">
                         <h3>Consumer Service</h3>
-                    </div>
-                    <div class="service-details">
-                        <p><strong>Port:</strong> 8082</p>
-                        <p><strong>Function:</strong> Order processing & aggregation</p>
-                        <p><strong>Status:</strong> <span class="service-status checking">Checking...</span></p>
-                    </div>
-                    <div class="service-actions">
-                        <a href="http://localhost:8082/actuator/health" target="_blank" class="btn-link">
-                            <i class="fas fa-heartbeat"></i> Health
-                        </a>
+                        <p class="info-detail">Port: 8082</p>
+                        <p class="info-detail">Order processing & aggregation</p>
+                        <div class="card-actions">
+                            <span class="status-badge checking">Checking...</span>
+                            <a href="http://localhost:8082/actuator/health" target="_blank" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-heartbeat"></i> Health
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -254,44 +247,61 @@
         <section class="monitoring-section">
             <h2><i class="fas fa-chart-area"></i> System Monitoring</h2>
             <div class="monitoring-grid">
-                <div class="monitor-card">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Error Tracking</h3>
-                    <div class="monitor-stat">
-                        <span class="monitor-value" id="errorCount">0</span>
-                        <span class="monitor-label">Total Errors</span>
-                    </div>
-                    <div class="monitor-detail">
-                        <i class="fas fa-redo"></i> Retries: <strong id="retryCount">0</strong>
-                    </div>
-                    <div class="monitor-detail">
-                        <i class="fas fa-skull-crossbones"></i> DLQ: <strong id="dlqCount">0</strong>
-                    </div>
-                </div>
-
-                <div class="monitor-card">
-                    <h3><i class="fas fa-tachometer-alt"></i> Performance</h3>
-                    <div class="monitor-stat">
-                        <span class="monitor-value" id="throughput">0</span>
-                        <span class="monitor-label">Orders/sec</span>
-                    </div>
-                    <div class="monitor-detail">
-                        <i class="fas fa-clock"></i> Avg Latency: <strong id="avgLatency">0ms</strong>
-                    </div>
-                    <div class="monitor-detail">
-                        <i class="fas fa-hourglass-half"></i> Consumer Lag: <strong id="consumerLag">0</strong>
+                <div class="info-card">
+                    <div class="info-card-content full-width">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Error Tracking</h3>
+                        <div class="monitor-stats">
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="errorCount">0</span>
+                                <span class="monitor-label">Total Errors</span>
+                            </div>
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="retryCount">0</span>
+                                <span class="monitor-label">Retries</span>
+                            </div>
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="dlqCount">0</span>
+                                <span class="monitor-label">DLQ Messages</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="monitor-card">
-                    <h3><i class="fas fa-layer-group"></i> Topics Status</h3>
-                    <div class="topic-item">
-                        <i class="fas fa-folder"></i> <strong>orders:</strong> <span id="ordersTopicCount">0</span> messages
+                <div class="info-card">
+                    <div class="info-card-content full-width">
+                        <h3><i class="fas fa-tachometer-alt"></i> Performance</h3>
+                        <div class="monitor-stats">
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="throughput">0</span>
+                                <span class="monitor-label">Orders/sec</span>
+                            </div>
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="avgLatency">0ms</span>
+                                <span class="monitor-label">Avg Latency</span>
+                            </div>
+                            <div class="monitor-item">
+                                <span class="monitor-value" id="consumerLag">0</span>
+                                <span class="monitor-label">Consumer Lag</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="topic-item">
-                        <i class="fas fa-redo"></i> <strong>orders-retry:</strong> <span id="retryTopicCount">0</span> messages
-                    </div>
-                    <div class="topic-item">
-                        <i class="fas fa-skull"></i> <strong>orders-dlq:</strong> <span id="dlqTopicCount">0</span> messages
+                </div>
+                <div class="info-card">
+                    <div class="info-card-content full-width">
+                        <h3><i class="fas fa-layer-group"></i> Topics Status</h3>
+                        <div class="topic-list">
+                            <div class="topic-item">
+                                <span><i class="fas fa-folder"></i> orders</span>
+                                <strong><span id="ordersTopicCount">0</span> messages</strong>
+                            </div>
+                            <div class="topic-item">
+                                <span><i class="fas fa-redo"></i> orders-retry</span>
+                                <strong><span id="retryTopicCount">0</span> messages</strong>
+                            </div>
+                            <div class="topic-item">
+                                <span><i class="fas fa-skull"></i> orders-dlq</span>
+                                <strong><span id="dlqTopicCount">0</span> messages</strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -299,7 +309,17 @@
 
         <!-- Dead Letter Queue Monitor -->
         <section class="section dlq-section">
-            <h2><i class="fas fa-exclamation-triangle"></i> Dead Letter Queue (DLQ) Monitor</h2>
+            <div class="section-header">
+                <h2><i class="fas fa-exclamation-triangle"></i> Dead Letter Queue (DLQ) Monitor</h2>
+                <div class="section-actions">
+                    <button class="btn btn-secondary btn-sm" onclick="loadErrorDetails()">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="showDLQDetails()">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                </div>
+            </div>
             <div class="table-container">
                 <table class="orders-table">
                     <thead>
@@ -313,18 +333,10 @@
                     </thead>
                     <tbody id="dlqTableBody">
                         <tr>
-                            <td colspan="5" style="text-align: center; color: #7f8c8d;">No DLQ messages</td>
+                            <td colspan="5" style="text-align: center; color: var(--text-muted);">No DLQ messages</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="dlq-actions">
-                <button class="btn btn-secondary" onclick="loadErrorDetails()">
-                    <i class="fas fa-sync"></i> Refresh DLQ
-                </button>
-                <button class="btn btn-secondary" onclick="showDLQDetails()">
-                    <i class="fas fa-info-circle"></i> DLQ Details
-                </button>
             </div>
         </section>
 
@@ -355,8 +367,15 @@
 
     <!-- Footer -->
     <footer class="dashboard-footer">
-        <p>Kafka Order Processing System | Built with Spring Boot 3.3.5, Apache Kafka 3.7.1, Confluent Platform 7.6.0</p>
-        <p>Auto-refresh enabled | Last updated: <span id="lastUpdate">--:--:--</span></p>
+        <div class="footer-content">
+            <p class="footer-main">Kafka Order Processing System | Built with Spring Boot 3.3.5, Apache Kafka 3.7.1, Confluent Platform 7.6.0</p>
+            <p class="footer-info">Auto-refresh enabled | Last updated: <span id="lastUpdate">--:--:--</span></p>
+            <p class="footer-credits">
+                Built by <a href="https://github.com/PramithaMJ" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> PramithaMJ
+                </a>
+            </p>
+        </div>
     </footer>
 
     <!-- Toast Notification Container -->
