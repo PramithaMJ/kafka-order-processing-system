@@ -9,8 +9,6 @@
 [![Java](https://img.shields.io/badge/Java-17%20LTS-orange.svg)](https://openjdk.org/)
 [![Avro](https://img.shields.io/badge/Apache%20Avro-1.11.3-red.svg)](https://avro.apache.org/)
 
----
-
 ## EG/2020/3990 - Jayasooriya LPM
 
 ## Table of Contents
@@ -40,8 +38,6 @@ A **production-grade distributed order processing system** built with Apache Kaf
 **Containerized** - Full Docker Compose orchestration with health checks
 **Observable** - Kafka UI dashboard, structured logging, metrics endpoints
 **Production-Ready** - Idempotent producers, manual commits, graceful shutdown
-
----
 
 ## Dashboard Demo
 
@@ -150,9 +146,9 @@ curl http://localhost:8082/api/consumer/stats | python3 -m json.tool
 │  Producer Service   │────┘                  │                                         │
 │    (Port 8090)      │                       │                                         │
 │                     │                       v                                         │
-│  REST API:          │         ┌──────────────────────────────────┐                   │
-│  • POST /api/orders │         │         ZooKeeper                │                   │
-│  • Avro Serializer  │         │        (Port 2181)               │                   │
+│  REST API:          │         ┌──────────────────────────────────┐                    │
+│  • POST /api/orders │         │         ZooKeeper                │              v     │
+│  • Avro Serializer  │         │        (Port 2181)               │                    │
 └──────────┬──────────┘         │                                  │                   │
            │                    │  • Cluster coordination          │                   │
            v                    │  • Leader election               │                   │
